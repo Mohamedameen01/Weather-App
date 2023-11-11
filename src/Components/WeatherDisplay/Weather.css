@@ -1,0 +1,14 @@
+#weather-status{
+    position: absolute;
+    top: 175px;
+    left: 13%;
+    color: #eee;
+}
+
+#status h5{
+    width: 100px;
+    border-bottom: 2px solid #eee;
+    text-align: center;
+    padding-bottom: 5px;
+
+}

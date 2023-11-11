@@ -3,20 +3,27 @@ import './SearchBar.css'
 import {Container, Form} from 'react-bootstrap'
 import { TextContext } from '../../Context/Context'
 import axios from 'axios'
+import SearchIcon from '@mui/icons-material/Search';
 
 function SearchBar() {
 
-  const [inputText,setInputText] = useState('')
+  const [inputText,setInputText] = useState()
   const {setWeatherData} = useContext(TextContext)
 
   const handleChange = (e)=>{
     let text = e.target.value
-    let key = e.key
     setInputText(text)
+    let key = e.key
     if(key === "Enter"){
       fetchData()
+      setInputText('')
     }
   }
+  
+  const handleClick = ()=>{
+    fetchData()
+  }
+
   const fetchData = async()=>{
     try{
       const response = await axios.get(
@@ -29,24 +36,26 @@ function SearchBar() {
       console.error("Error in Fetching Data: "+error)
     }
   }   
- 
-  const handleSubmit = (e)=>{
-    e.preventDefault()
-    
-  }
+  
   return (
-    <Container >
-        <Form.Group onSubmit={handleSubmit}>
+      <Container className='search-box w-50 h-50'>
+        <Form.Group
+          className='h-50 d-flex  justify-content-center align-items-center' 
+        >
           <Form.Control
             type='text'
+            placeholder='Enter City Name'
+            value={inputText}
             onChange={handleChange}
             onKeyDown={handleChange}
+            className='search-input w-50 '
           />
-          <Form.Text>
-            Enter City Name or Coordinate
-          </Form.Text>
+          <SearchIcon 
+            id='search-icon'
+            onClick={handleClick}
+          />  
         </Form.Group>
-    </Container>
+      </Container>
   )
 }
 
