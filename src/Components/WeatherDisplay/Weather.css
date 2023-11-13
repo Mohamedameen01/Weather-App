@@ -1,14 +1,42 @@
 #weather-status{
-    position: absolute;
-    top: 175px;
-    left: 13%;
+    position: relative;
+    top: -155px;
     color: #eee;
+    display: flex;
+    flex-direction: column;
+    align-items: around;
 }
 
-#status h5{
-    width: 100px;
-    border-bottom: 2px solid #eee;
+#status-scale h5{
+    width: 90px;
     text-align: center;
-    padding-bottom: 5px;
+}
 
+@media (orientation: portrait){
+    #weather-status{
+        top:-225px;
+    }
+}
+
+@media (max-height:670px){
+    #weather-status{
+        top: -175px;
+    }
+}
+@media (max-width:576px){
+    #status  h4{
+        font-size: medium;
+    }
+    #status-scale h5{
+        font-size: small;
+        width: 60px;
+    }
+    #sun-status > h5{
+        font-size: small;
+    }
+}
+@media (max-width:280px){
+    #status  h4{
+        font-size:small;
+    }
 }

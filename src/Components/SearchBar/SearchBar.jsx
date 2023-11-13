@@ -1,9 +1,9 @@
 import React, { useContext, useState} from 'react'
 import './SearchBar.css'
-import {Container, Form} from 'react-bootstrap'
+import {Form} from 'react-bootstrap'
 import { TextContext } from '../../Context/Context'
 import axios from 'axios'
-import SearchIcon from '@mui/icons-material/Search';
+
 
 function SearchBar() {
 
@@ -20,10 +20,6 @@ function SearchBar() {
     }
   }
   
-  const handleClick = ()=>{
-    fetchData()
-  }
-
   const fetchData = async()=>{
     try{
       const response = await axios.get(
@@ -33,14 +29,14 @@ function SearchBar() {
       setWeatherData(response.data)
     }
     catch(error){
-      console.error("Error in Fetching Data: "+error)
+      alert("Error in Fetching Data: "+error)
     }
   }   
   
   return (
-      <Container className='search-box w-50 h-50'>
+      <div className='search-box h-50'>
         <Form.Group
-          className='h-50 d-flex  justify-content-center align-items-center' 
+          className='h-50 d-flex justify-content-center align-items-center position-relative' 
         >
           <Form.Control
             type='text'
@@ -48,14 +44,10 @@ function SearchBar() {
             value={inputText}
             onChange={handleChange}
             onKeyDown={handleChange}
-            className='search-input w-50 '
+            className='search-input'
           />
-          <SearchIcon 
-            id='search-icon'
-            onClick={handleClick}
-          />  
-        </Form.Group>
-      </Container>
+        </Form.Group>      
+      </div>
   )
 }
 
